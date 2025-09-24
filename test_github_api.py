@@ -12,10 +12,10 @@ class TestGitHubApi(unittest.TestCase):
 
     def test_invalid_user(self):
         with self.assertRaises(Exception):
-            get_user_repos_and_commits("thisuserdoesnotexist999999")
+            get_user_repos_and_commits("Thisusernamedoesnotexistbecauseitisverylong74747")
 
     def test_output_format(self):
-        result = get_user_repos_and_commits("octocat")
+        result = get_user_repos_and_commits("jgalligan1")
         for item in result:
             self.assertIsInstance(item, dict)
             self.assertIn("repo", item)

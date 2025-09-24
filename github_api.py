@@ -1,4 +1,5 @@
 import requests
+import json
 
 def get_user_repos_and_commits(username):
     """
@@ -31,7 +32,7 @@ def get_user_repos_and_commits(username):
 
 
 if __name__ == "__main__":
-    user = "richkempinski"  # Example user
+    user = "Jgalligan1"  
     repos_and_commits = get_user_repos_and_commits(user)
     for item in repos_and_commits:
         print(f"Repo: {item['repo']} Number of commits: {item['commits']}")
