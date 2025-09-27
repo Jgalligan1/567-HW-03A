@@ -1,7 +1,11 @@
 language: python
 python:
   - "3.8"
+
+# Install dependencies
 install:
   - pip install -r requirements.txt
+
+# Run tests
 script:
-  - pytest
+  - python -m unittest discover -s . -p "test_*.py"
