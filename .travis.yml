@@ -4,4 +4,4 @@ python:
 install:
   - pip install -r requirements.txt
 script:
-  - python -m unittest discover -s HW-03A
+  - python -m unittest discover
