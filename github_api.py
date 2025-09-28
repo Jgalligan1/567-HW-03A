@@ -2,10 +2,6 @@ import requests
 import json
 
 def get_user_repos_and_commits(username):
-    """
-    Given a GitHub username, return a list of dictionaries containing
-    each repo name and its commit count.
-    """
     repos_url = f"https://api.github.com/users/{username}/repos"
     repos_response = requests.get(repos_url)
 
