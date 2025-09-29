@@ -4,7 +4,15 @@ from github_api import get_user_repos_and_commits
 
 class TestGitHubApi(unittest.TestCase):
 
-    def test_valid_user(self):
+    @patch("github_api.requests.get")
+    def test_valid_user(self, mock_get):
+        # Mock response for repositories
+        mock_get.return_value.status_code = 200
+        mock_get.return_value.json.return_value = [
+            {"name": "repo1"},
+            {"name": "repo2"}
+        ]
+
         result = get_user_repos_and_commits("richkempinski")
         self.assertIsInstance(result, list)
         if len(result) > 0:
