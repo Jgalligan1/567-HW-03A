@@ -1,4 +1,5 @@
 import unittest
+from unittest.mock import patch
 from github_api import get_user_repos_and_commits
 
 class TestGitHubApi(unittest.TestCase):
