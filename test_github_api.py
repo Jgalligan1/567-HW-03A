@@ -19,11 +19,23 @@ class TestGitHubApi(unittest.TestCase):
             self.assertIn("repo", result[0])
             self.assertIn("commits", result[0])
 
-    def test_invalid_user(self):
+    @patch("github_api.requests.get")
+    def test_invalid_user(self, mock_get):
+        #Simulating an error without actually triggering the error
+        mock_get.return_value.status_code = 404
+        mock_get.return_value.json.return_value = {}
+
         with self.assertRaises(Exception):
             get_user_repos_and_commits("Thisusernamedoesnotexistbecauseitisverylong74747")
 
-    def test_output_format(self):
+    @patch("github_api.requests.get")
+    def test_output_format(self,mock_get):
+        # Mock repos response
+        mock_get.return_value.status_code = 200
+        mock_get.return_value.json.return_value = [
+            {"name": "repo1"},
+            {"name": "repo2"}
+        ]
         result = get_user_repos_and_commits("jgalligan1")
         for item in result:
             self.assertIsInstance(item, dict)
